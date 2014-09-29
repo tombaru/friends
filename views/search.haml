@@ -1,0 +1,9 @@
+%h3 Форма страницы
+%form{:action => "/search", :method => "post"}
+  %label{:for => "name"} Название фильма:
+  %input#name{:name => "name", :type => "text"}/
+  %br/
+  %label{:for => "count"} Кол-во серий:
+  %input#alias{:name => "count", :type => "text"}/
+  %br/
+  %input.btn.btn-primary{:name => "submit", :type => "submit", :value => "Далее"}
