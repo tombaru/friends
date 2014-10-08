@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20140929142912) do
   enable_extension "plpgsql"
 
   create_table "videos", force: true do |t|
-    t.string  "tiitle"
+    t.string  "title"
     t.integer "episode"
     t.integer "season"
   end

@@ -1,7 +1,7 @@
 class CreateVideos < ActiveRecord::Migration
   def self.up
     create_table :videos do |t|
-      t.string :tiitle
+      t.string :title
       t.integer :episode
       t.integer :season
     end
