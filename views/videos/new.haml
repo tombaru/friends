@@ -1,0 +1,15 @@
+%h3 Создать видео:
+%form{action: "/videos/create", enctype: "multipart/form-data", method: "post"}
+  %label{for: "title"} Название эпизода:
+  %input#name{name: "video[title]", type: "text"}
+  %br
+  %label{for: "season"} Номер сезона:
+  %input#alias{name: "video[season]", type: "integer"}
+  %br
+  %label{for: "episode"} Номер серии:
+  %input#alias{name: "video[episode]", type: "integer"}
+  %br
+  %label{for: "file"} Файл:
+  %input#alias{name: "video[file]", type: "file"}
+  %br
+  %input.btn.btn-primary{name: "submit", type: "submit", value: "Далее"}

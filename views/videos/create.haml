@@ -1,0 +1,11 @@
+%table
+  %tbody
+    %tr
+    - @videos.each do |video|
+      %td
+        = link_to video.title, video
+        = link_to video.episode, video 
+      %td
+      	= @file = File.new
+				= @file.file = params[:file] #загрузка изображения
+				= @file.save
