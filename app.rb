@@ -4,7 +4,7 @@ require 'json'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require './uploaders/file_uploader'
-require 'pry'
+# require 'pry'
 
 use Rack::Logger
 
@@ -18,6 +18,17 @@ set :database, 'postgres://goblin:123@localhost/friends'
 
 class Video < ActiveRecord::Base
   mount_uploader :file, FileUploader
+
+  validates :title, :episode, :season, presence: true
+  validates :episode, uniqueness: { scope: :season }
+
+  before_save :capitalize
+ 
+  private
+
+  def capitalize
+    self.title = title.capitalize
+  end
 end
 
 get '/' do
@@ -37,7 +48,6 @@ end
 
 post "/videos/create" do
   video = Video.new(params[:video])
-
   if video.save
     redirect to("/videos/#{video.id}")
   else
