@@ -1,15 +1,26 @@
+- video = video || nil
+
 %h3 Создать видео:
 %form{action: "/videos/create", enctype: "multipart/form-data", method: "post"}
   %label{for: "title"} Название эпизода:
-  %input#name{name: "video[title]", type: "text"}
+  %input#name{name: "video[title]", type: "text", value: "#{video.title if video}" }
   %br
   %label{for: "season"} Номер сезона:
-  %input#alias{name: "video[season]", type: "integer"}
+  %input#alias{name: "video[season]", type: "integer", value: "#{video.season if video}"}
   %br
   %label{for: "episode"} Номер серии:
-  %input#alias{name: "video[episode]", type: "integer"}
+  %input#alias{name: "video[episode]", type: "integer", value: "#{video.episode if video}"}
   %br
   %label{for: "file"} Файл:
   %input#alias{name: "video[file]", type: "file"}
   %br
   %input.btn.btn-primary{name: "submit", type: "submit", value: "Далее"}
+
+- if video
+  - if video.errors.any? 
+    #error_explanation
+      %h2
+        #{video.errors.count} errors prohibited this video from being saved
+      %ul
+        - video.errors.full_messages.each do |msg|
+          %li= msg

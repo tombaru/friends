@@ -47,11 +47,11 @@ end
 
 
 post "/videos/create" do
-  video = Video.new(params[:video])
-  if video.save
+  @video = Video.new(params[:video])
+  if @video.save
     redirect to("/videos/#{video.id}")
   else
-   	redirect to('/videos/new')
+   	haml :'videos/new', locals: { video: @video }
   end
 
 end
